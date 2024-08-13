@@ -1,0 +1,37 @@
+--Crear BBDD--
+
+CREATE TABLE cursos (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    tipo VARCHAR(10) CHECK (tipo IN ('DIA', 'NOCHE')) NOT NULL
+);
+
+CREATE TABLE estudiantes (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    apellido VARCHAR(100) NOT NULL,
+    edad INTEGER NOT NULL,
+    curso_id INTEGER REFERENCES cursos(id)
+);
+
+
+--LLenar BBDD--
+
+INSERT INTO cursos (nombre, tipo) VALUES
+('Java para Principiantes', 'DIA'),
+('Desarrollo Web con HTML, CSS y JavaScript', 'NOCHE'),
+('Fundamentos de Python', 'DIA'),
+('Bases de Datos con PostgreSQL', 'NOCHE'),
+('Desarrollo de Aplicaciones con Spring Boot', 'DIA');
+
+INSERT INTO estudiantes (nombre, apellido, edad, curso_id) VALUES
+('Juan', 'Pérez', 22, 1),
+('Ana', 'Gómez', 25, 2),
+('Luis', 'Martínez', 20, 3),
+('María', 'Rodríguez', 30, 4),
+('Carlos', 'Fernández', 28, 5),
+('Lucía', 'Hernández', 24, 1),
+('Pedro', 'López', 26, 3),
+('Elena', 'García', 27, 5),
+('Sofía', 'Ruiz', 21, 4),
+('Miguel', 'Torres', 29, 2);
